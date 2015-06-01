@@ -4,4 +4,40 @@
 
 {% block startPageBlock %}
     <h1>ABOUT</h1>
+    <div class="col-lg-4 mainCategories">*UPDATES*</div>
+    <div class="col-lg-2 mainCategories">
+
+        <h4>{{ Hobbies.category_title }}</h4>
+        {% for cat in Hobbies_categories %}
+            <p>{{ cat.category_title }}</p>
+        {% endfor %}
+    </div>
+    <div class="col-lg-2 mainCategories">
+
+        <h4>{{ HiTech.category_title }}</h4>
+        {% for cat in HiTech_categories %}
+            <p>{{ cat.category_title }}</p>
+        {% endfor %}
+    </div>
+        <div class="col-lg-2 mainCategories">
+
+        <h4>{{ Talks.category_title }}</h4>
+        {% for cat in Talks_categories %}
+            <p>{{ cat.category_title }}</p>
+        {% endfor %}
+    </div>
+    <div class="col-lg-2 mainCategories">
+        <div class="row">
+            <h4>{{ BigBoss.category_title }}</h4>
+            {% for cat in BigBoss_categories %}
+                <p>{{ cat.category_title }}</p>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <h4>{{ HR.category_title }}</h4>
+            {% for cat in HR_categories %}
+                <p>{{ cat.category_title }}</p>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

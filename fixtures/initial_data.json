@@ -1,0 +1,149 @@
+[
+  {
+    "model": "ITFORUM.Category",
+    "pk": 1,
+    "fields": {
+      "category_title": "Hobbies"
+    }
+  },
+  {
+    "model": "ITFORUM.Category",
+    "pk": 2,
+    "fields": {
+      "category_title": "Hi-Tech"
+    }
+  },
+  {
+    "model": "ITFORUM.Category",
+    "pk": 3,
+    "fields": {
+      "category_title": "Talks"
+    }
+  },
+  {
+    "model": "ITFORUM.Category",
+    "pk": 4,
+    "fields": {
+      "category_title": "Big Boss"
+    }
+  },
+  {
+    "model": "ITFORUM.Category",
+    "pk": 5,
+    "fields": {
+      "category_title": "HR"
+    }
+  },
+    {
+    "model": "ITFORUM.Category",
+    "pk": 6,
+    "fields": {
+      "category_title": "Football",
+      "parent_category": 1
+    }
+  },
+      {
+    "model": "ITFORUM.Category",
+    "pk": 7,
+    "fields": {
+      "category_title": "Basketball",
+      "parent_category": 1
+    }
+  },
+  {
+    "model": "ITFORUM.Category",
+    "pk": 8,
+    "fields": {
+      "category_title": "Volleyball",
+      "parent_category": 1
+    }
+  },
+  {
+    "model": "ITFORUM.Category",
+    "pk": 9,
+    "fields": {
+      "category_title": "Skills",
+      "parent_category": 2
+    }
+  },
+  {
+    "model": "ITFORUM.Category",
+    "pk": 10,
+    "fields": {
+      "category_title": "Haskell",
+      "parent_category": 2
+    }
+  },
+  {
+    "model": "ITFORUM.Category",
+    "pk": 11,
+    "fields": {
+      "category_title": ".NET",
+      "parent_category": 2
+    }
+  },
+  {
+    "model": "ITFORUM.Category",
+    "pk": 12,
+    "fields": {
+      "category_title": "Java",
+      "parent_category": 2
+    }
+  },
+  {
+    "model": "ITFORUM.Category",
+    "pk": 13,
+    "fields": {
+      "category_title": "Kharkov",
+      "parent_category": 3
+    }
+  },
+  {
+    "model": "ITFORUM.Category",
+    "pk": 14,
+    "fields": {
+      "category_title": "Kherson",
+      "parent_category": 3
+    }
+  },
+  {
+    "model": "ITFORUM.Category",
+    "pk": 15,
+    "fields": {
+      "category_title": "Kiev",
+      "parent_category": 3
+    }
+  },
+  {
+    "model": "ITFORUM.Category",
+    "pk": 16,
+    "fields": {
+      "category_title": "Audit",
+      "parent_category": 4
+    }
+  },
+  {
+    "model": "ITFORUM.Category",
+    "pk": 17,
+    "fields": {
+      "category_title": "Managers",
+      "parent_category": 4
+    }
+  },
+  {
+    "model": "ITFORUM.Category",
+    "pk": 18,
+    "fields": {
+      "category_title": "Idle",
+      "parent_category": 5
+    }
+  },
+  {
+    "model": "ITFORUM.Category",
+    "pk": 19,
+    "fields": {
+      "category_title": "Stuffing",
+      "parent_category": 5
+    }
+  }
+]

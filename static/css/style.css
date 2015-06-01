@@ -1,3 +1,8 @@
 #bottomText {
     text-align: right;
 }
+
+.mainCategories{
+    border-style: solid;
+    border-width: 1px;
+}

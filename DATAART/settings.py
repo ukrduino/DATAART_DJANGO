@@ -1,6 +1,11 @@
 import os
 import sys
 
+SITE_ADR = "http://127.0.0.1:8000"
+TRIM_PATH = 0
+if sys.platform.startswith('win32'):
+    TRIM_PATH = 30
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = '8b4#j5y@nvqecica!3up%g6*=rsy04bihwoft51ymv!98#h#_*'
@@ -75,6 +80,10 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'),
+
+)
 
 
 # Internationalization
