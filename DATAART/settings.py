@@ -25,6 +25,7 @@ INSTALLED_APPS = (
     'ITFORUM',
     'captcha',
     'mptt',
+    'bootstrap3',
 )
 
 DEBUG_APPS = ('debug_toolbar',)
