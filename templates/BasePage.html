@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>IT Forum</title>
+    <title>Forums</title>
     <link href="{% static 'favicon.ico' %}" rel="icon" type="image/x-icon">
 
     <!-- Bootstrap -->
@@ -21,44 +21,18 @@
 </head>
 
 <body>
-
-<div class="container" id="main">
-    <div class="row">
-        <div class="col-lg-2" >
-            <img id="logoImage" src="{% static 'Logo.jpg' %}" alt="Logo.jpg">
+    <div class="container" id="main">
+        <div class="row">
+            {% block board_page_header %}{% endblock %}
+            {% block threads_page_header %}{% endblock %}
         </div>
-        <div class="col-lg-10">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4>Forums board</h4>
-                    <span class="pull-right" id="loginAdmin">
-                        {% if user.is_anonymous %}
-                            <a href="{% url 'user_login' %}">Login</a>
-                        {% else %}
-                            Logged in as {{ user }} (<a href="{% url 'user_logout' %}">logout</a>)
-                            |  <a href="{% url 'admin:index' %}">Admin</a>
-                        {% endif %}
-
-                    </span>
-
-                </div>
-                <div class="panel-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Proin augue augue, congue quis dui ut, ornare varius quam.
-                    Etiam molestie elementum velit vel facilisis. Phasellus posuere mauris eget velit interdum elementum. Maecenas porta, velit sit amet efficitur blandit, ligula sapien lobortis turpis, sed blandit arcu leo ut magna. Donec a erat lectus. Pellentesque at vestibulum elit. Donec accumsan ligula eget porta feugiat. Nulla a sem et ligula porta vehicula vitae sit amet est. Fusce sit amet fermentum nibh. Quisque viverra risus in mollis pellentesque.
-                </div>
-            </div>
+    </div>
+    <div class="bottom_buffer"></div>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <p id="bottomText">Made by Romanyuk Sergey - 2015</p>
         </div>
-        {% block startPageBlock %}{% endblock %}
-        {% block login %}{% endblock %}
-    </div>
-</div>
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <p id="bottomText">Made by Romanyuk Sergey - 2015</p>
-    </div>
-</nav>
+    </nav>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -66,14 +40,5 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript" src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-
-{#http://getbootstrap.com/javascript/#tooltips#}
-<script>
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
-
-
 </body>
 </html>

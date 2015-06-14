@@ -1,0 +1,21 @@
+{% extends 'ThreadsPageHeader.html' %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+
+{% block thread_content %}
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading" id="threads_content_panel_header">
+                <h4>Python</h4>
+            </div>
+            <div class="panel-body">
+                <form action="" method="post" id="loginForm">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <input type="submit" class="btn btn-success" value="Захады ! ! !">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

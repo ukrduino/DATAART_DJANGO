@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response, redirect, render
 
 # Create your views here.
 from django.template import RequestContext
-from ITFORUM.models import Category
+from ITFORUM.models import Category, Thread, ThreadForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
@@ -22,7 +22,7 @@ def start_page(request):
     args['Hobbies_categories'] = Category.objects.filter(parent_category__category_title="Hobbies")
     args['HiTech_categories'] = Category.objects.filter(parent_category__category_title="Hi-Tech")
     args['Talks_categories'] = Category.objects.filter(parent_category__category_title="Talks")
-    return render_to_response("StartPage.html", args, context_instance=RequestContext(request))
+    return render_to_response("BoardPageContent.html", args, context_instance=RequestContext(request))
 
 def user_login(request):
     if request.method == 'POST':
@@ -50,3 +50,19 @@ def user_logout(request):
     logout(request)
     return redirect('/')
 
+def threads_page(request):
+    args = dict()
+    args["form"] = ThreadForm()
+    categories_with_subcategories = dict()
+    main_cats = Category.objects.filter(parent_category=None)
+    # print(main_cats)
+    for main_cat in main_cats:
+        categories_with_subcategories[main_cat.category_title] = Category\
+            .objects.filter(parent_category__category_title=main_cat.category_title)
+        # for i in categories_with_subcategories[main_cat.category_title]:
+        #     print(i)
+    if request.user.is_anonymous():
+        del categories_with_subcategories["HR"]
+        del categories_with_subcategories["Big Boss"]
+    args['main_categories'] = categories_with_subcategories
+    return render_to_response("ThreadsPageContent.html", args, context_instance=RequestContext(request))

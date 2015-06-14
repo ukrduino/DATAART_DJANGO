@@ -1,0 +1,40 @@
+{% extends 'BasePage.html' %}
+{% load staticfiles %}
+
+{% block threads_page_header %}
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+                <div class="panel-heading" id="threads_header_panel_header">
+                {% if user.is_anonymous %}
+                    <a href="{% url 'home' %}">Dashboard</a> | <a href="{% url 'user_login' %}">Login</a>
+                {% else %}
+                    <a href="{% url 'home' %}">Dashboard</a> | {{ user }}
+                {% endif %}
+            </div>
+            <div class="panel-body">
+                <div class="media">
+                    <div class="media-body">
+                        <dl class="dl-horizontal">
+                            {% for key, value in main_categories.items %}
+                                <dt>
+                                    {{ key }}
+                                </dt>
+                                <dd>
+                                    <ul class="csv">
+                                        {% for sub_cat in value %}
+                                            <li><a href="#">{{ sub_cat }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </dd>
+                            {% endfor %}
+                        </dl>
+                    </div>
+                    <div class="media-right">
+                        <img class="media-object logo_image" src="{% static 'Logo.jpg' %}" alt="Logo.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block thread_content %}{% endblock %}
+{% endblock %}

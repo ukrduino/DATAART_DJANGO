@@ -11,14 +11,32 @@ h4 {
     display:inline;
 }
 
-#loginAdmin a{
+.panel-heading a{
     color: white;
 }
 
-#logoImage{
+.logo_image {
     height: 150px
 }
 
 #main{
     padding-top: 15px;
+}
+
+#threads_header_panel_header{
+    text-align: right;
+}
+
+/*comma separated list*/
+ul.csv { list-style: none; margin: 0; padding: 0; }
+ul.csv li { display: inline; }
+ul.csv li:after { content: ","; }
+ul.csv li:last-child:after { content: ""; }
+
+.bottom_buffer{
+    height: 50px;
+}
+
+#threads_content_panel_header{
+    text-align: center;
 }

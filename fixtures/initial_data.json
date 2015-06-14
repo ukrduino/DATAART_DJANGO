@@ -145,5 +145,69 @@
       "category_title": "Stuffing",
       "parent_category": 5
     }
+  },
+    {
+    "model": "ITFORUM.Category",
+    "pk": 20,
+    "fields": {
+      "category_title": "PHP",
+      "parent_category": 2
+    }
+  },
+    {
+    "model": "ITFORUM.Category",
+    "pk": 21,
+    "fields": {
+      "category_title": "Python",
+      "parent_category": 2
+    }
+  },
+    {
+    "model": "ITFORUM.Category",
+    "pk": 22,
+    "fields": {
+      "category_title": "Ruby",
+      "parent_category": 2
+    }
+  },
+    {
+    "model": "ITFORUM.Category",
+    "pk": 23,
+    "fields": {
+      "category_title": "C++",
+      "parent_category": 2
+    }
+  },
+    {
+    "model": "ITFORUM.Category",
+    "pk": 24,
+    "fields": {
+      "category_title": "Linux",
+      "parent_category": 2
+    }
+  },
+    {
+    "model": "ITFORUM.Category",
+    "pk": 25,
+    "fields": {
+      "category_title": "Mac",
+      "parent_category": 2
+    }
+  },
+      {
+    "model": "ITFORUM.Category",
+    "pk": 26,
+    "fields": {
+      "category_title": "NoSQL",
+      "parent_category": 2
+    }
+  },
+      {
+    "model": "ITFORUM.Category",
+    "pk": 27,
+    "fields": {
+      "category_title": "RMDB",
+      "parent_category": 2
+    }
   }
 ]
