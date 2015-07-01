@@ -37,6 +37,27 @@ ul.csv li:last-child:after { content: ""; }
     height: 50px;
 }
 
-#threads_content_panel_header{
+#new_thread_panel_header{
     text-align: center;
+}
+
+#thread_category_header{
+    text-align: center;
+}
+
+#thread_title{
+    text-align: left;
+}
+
+#thread_date{
+    text-align: center;
+}
+
+#thread_reply{
+    text-align: right;
+}
+
+
+.media-body{
+    padding-left:20px;
 }

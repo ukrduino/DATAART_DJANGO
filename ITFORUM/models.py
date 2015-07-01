@@ -1,6 +1,5 @@
 from django.core.files.storage import FileSystemStorage
 from django.db import models
-from django.forms import ModelForm
 
 fs = FileSystemStorage(location='/media')
 
@@ -39,10 +38,6 @@ class Thread(models.Model):
     def __unicode__(self):
         return self.thread_title
 
-class ThreadForm(ModelForm):
-    class Meta:
-        model = Thread
-        exclude = ["pk"]
 
 class Reply(models.Model):
     class Meta:
