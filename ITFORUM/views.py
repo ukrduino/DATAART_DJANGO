@@ -49,7 +49,7 @@ def user_logout(request):
 
 def threads_category_page(request, category_id=6):
     args = dict()
-    args["form"] = ThreadForm("Hi-Tech")
+    args["form"] = ThreadForm()
     categories_with_subcategories = dict()
     main_cats = Category.objects.filter(parent_category=None)
     for main_cat in main_cats:
@@ -61,13 +61,18 @@ def threads_category_page(request, category_id=6):
     args['main_categories'] = categories_with_subcategories
     args['threads'] = Thread.objects.filter(thread_category__id=category_id)
     args['category'] = Category.objects.get(id=category_id)
+    args['category_id'] = category_id
     return render_to_response("ThreadsPageContent.html", args, context_instance=RequestContext(request))
 
 def new_thread(request):
     if request.method == 'POST':
         form = ThreadForm(request.POST)
+        category = Category.objects.get(id=request.context.get('category_id'))
+        print(request.session.get('category_id'))
         if form.is_valid():
-            form.save()
+            add_thread = form.save(commit=False)
+            add_thread.thread_category = category
+            add_thread.save()
         else:
             form = ThreadForm()
 
@@ -76,7 +81,7 @@ def new_thread(request):
 
 def thread_page(request, thread_id=1):
     args = dict()
-    args["form"] = ThreadForm("Hi-Tech")
+    args["form"] = ThreadForm()
     categories_with_subcategories = dict()
     main_cats = Category.objects.filter(parent_category=None)
     for main_cat in main_cats:

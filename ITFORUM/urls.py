@@ -5,6 +5,6 @@ urlpatterns = patterns('ITFORUM.views',
                        url(r'login$', 'user_login', name='user_login'),
                        url(r'logout$', 'user_logout', name='user_logout'),
                        url(r'threads_category/([0-9]+)$', 'threads_category_page', name='threads_category_page'),
-                       url(r'new_thread$', 'new_thread', name='new_thread'),
+                       url(r'new_thread/$', 'new_thread', name='new_thread'),
                        url(r'thread/([0-9]+)$', 'thread_page',  name="thread_page"),
                        )
