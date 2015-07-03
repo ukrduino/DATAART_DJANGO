@@ -49,7 +49,7 @@ class Reply(models.Model):
     reply_to_reply = models.ForeignKey("self", blank=True, null=True)
 
     def __str__(self):
-        return self.pk
+        return str(self.id)
 
     def __unicode__(self):
-        return self.pk
+        return str(self.id)

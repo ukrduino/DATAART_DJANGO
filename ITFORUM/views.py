@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response, redirect, render
 
 from django.template import RequestContext
 from ITFORUM.forms import ThreadForm
-from ITFORUM.models import Category, Thread
+from ITFORUM.models import Category, Thread, Reply
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 
@@ -92,5 +92,6 @@ def thread_page(request, thread_id=1):
         del categories_with_subcategories["Big Boss"]
     args['main_categories'] = categories_with_subcategories
     args['thread'] = Thread.objects.get(id=thread_id)
+    args['replies'] = Reply.objects.filter(reply_to_thread__id=thread_id)
     return render_to_response("ThreadPageContent.html", args, context_instance=RequestContext(request))
 
