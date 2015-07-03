@@ -1,10 +1,6 @@
 import os
 import sys
 
-SITE_ADR = "http://127.0.0.1:8000"
-TRIM_PATH = 0
-if sys.platform.startswith('win32'):
-    TRIM_PATH = 30
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -35,7 +31,7 @@ if not sys.platform.startswith('linux'):
         INSTALLED_APPS += DEBUG_APPS
 
 MIDDLEWARE_CLASSES = (
-    'debug_toolbar.middleware.DebugToolbarMiddleware',  # comment on pythonanywhere
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -106,6 +102,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+MEDIA_URL = '/media/'
 
 
 # # https://github.com/django-admin-bootstrapped/django-admin-bootstrapped

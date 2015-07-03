@@ -22,7 +22,7 @@
         </div>
         <div class="panel-body">
             {% for sub_cat in value %}
-                <p><a href="#">{{ sub_cat.category_title }}</a></p>
+                <p><a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat.category_title }}</a></p>
             {% endfor %}
         </div>
     </div>

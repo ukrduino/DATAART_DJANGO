@@ -3,9 +3,9 @@
 {% load bootstrap3 %}
 
 
-{% block threads_content %}
+{% block thread_content %}
 <div class="col-lg-12">
-    <div class="well well-sm" id="thread_category_header"><h2>{{category.category_title}}</h2></div>
+    <div class="well well-sm" id="thread_category_header"><h2>{{ thread.thread_title }}</h2></div>
     <div class="col-lg-8 col-lg-offset-2">
         <div class="panel panel-primary">
             <div class="panel-heading" id="new_thread_panel_header">
@@ -21,21 +21,16 @@
         </div>
     </div>
     <div class="col-lg-12">
-        {% for thread in threads%}
         <div class="panel panel-primary">
             <div class="panel-heading clearfix">
-                <div class="col-lg-6" id="thread_title"><h4>#{{ thread.id }}
-                    | {{ thread.thread_title }}</h4></div>
-                <div class="col-lg-3" id="thread_date">
-                    <p>Created : {{ thread.thread_date }}</p>
-                </div>
-                <div class="col-lg-3" id="thread_reply"><a class="btn btn-success" href="{% url 'thread_page' thread.id %}">Reply</a></div>
+                <div class="col-lg-6" id="thread_title"><h4>#ID |Thread title</h4></div>
+                <div class="col-lg-3" id="thread_date"><p>Created date</p></div>
+                <div class="col-lg-3" id="thread_reply"><a class="btn btn-success" href="#">Reply</a></div>
             </div>
             <div class="panel-body">
                 <div class="media">
                     <div class="media-left">
-                        <img class="media-object logo_image" src="http://127.0.0.1:8000/{{thread.thread_image}}"
-                             alt="Logo.jpg">
+                        <img class="media-object logo_image" src="{% static 'Logo.jpg' %}" alt="Logo.jpg">
                     </div>
                     <div class="media-body">
                         <h5></h5>
@@ -53,7 +48,6 @@
                 </div>
             </div>
         </div>
-        {% endfor %}
     </div>
 </div>
 

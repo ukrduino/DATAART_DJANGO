@@ -22,7 +22,7 @@
                                 <dd>
                                     <ul class="csv">
                                         {% for sub_cat in value %}
-                                            <li><a href="#">{{ sub_cat }}</a></li>
+                                            <li><a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat }}</a></li>
                                         {% endfor %}
                                     </ul>
                                 </dd>
@@ -36,5 +36,6 @@
             </div>
         </div>
     </div>
+    {% block threads_content %}{% endblock %}
     {% block thread_content %}{% endblock %}
 {% endblock %}
