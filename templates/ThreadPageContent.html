@@ -9,13 +9,13 @@
     <div class="col-lg-8 col-lg-offset-2">
         <div class="panel panel-primary">
             <div class="panel-heading" id="new_thread_panel_header">
-                <h4>New thread</h4>
+                <h4>New reply</h4>
             </div>
             <div class="panel-body">
                 <form action='/new_thread/' method="post">
                     {% csrf_token %}
                     {% bootstrap_form form %}
-                    <input type="submit" class="btn btn-success" value="Create new thread">
+                    <input type="submit" class="btn btn-success" value="Create new reply">
                 </form>
             </div>
         </div>
