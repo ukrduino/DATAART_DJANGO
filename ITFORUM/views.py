@@ -75,32 +75,28 @@ def new_thread(request):
     # http://stackoverflow.com/a/12758859/3177550
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
-def thread_page(request, thread_id=1):
+def thread_page(request, thread_id=1, reply_id=0, form=0):
     args = dict()
     args['main_categories'] = categories_for_header(request)
-    args["form"] = ThreadForm()
+    request.session['thread_id'] = thread_id
+    if form:
+        args["form"] = ReplyForm
+    if reply_id:
+        request.session['reply_id'] = reply_id
     args['thread'] = Thread.objects.get(id=thread_id)
     args['replies'] = list(reversed(Reply.objects.filter(reply_to_thread__id=thread_id)))
     return render_to_response("ThreadPageContent.html", args, context_instance=RequestContext(request))
 
-def new_reply_to_thread(request):
+def new_reply(request):
     if request.method == 'POST':
         form = ReplyForm(request.POST)
         if form.is_valid():
             add = form.save(commit=False)
-            add.thread_category_id = request.session['category_id']
+            add.reply_to_thready_id = int(request.session['thread_id'])
+            if request.session['reply_id']:
+                add.reply_to_reply_id = request.session['reply_id']
             add.save()
 
     # http://stackoverflow.com/a/12758859/3177550
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
-def new_reply_to_reply(request):
-    if request.method == 'POST':
-        form = ReplyForm(request.POST)
-        if form.is_valid():
-            add = form.save(commit=False)
-            add.thread_category_id = request.session['category_id']
-            add.save()
-
-    # http://stackoverflow.com/a/12758859/3177550
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))

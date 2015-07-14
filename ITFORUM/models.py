@@ -45,7 +45,7 @@ class Reply(models.Model):
 
     reply_text = models.TextField(verbose_name='Reply text', blank=False)
     reply_date = models.DateTimeField(auto_now_add=True, verbose_name='Created', blank=False)
-    reply_to_thread = models.ForeignKey(Thread)
+    reply_to_thread = models.ForeignKey(Thread, null=True)
     reply_to_reply = models.ForeignKey("self", blank=True, null=True)
 
     def __str__(self):
