@@ -4,66 +4,71 @@
 
 
 {% block threads_content %}
-<div class="col-lg-12">
-    <div class="well well-sm" id="thread_category_header"><h2>{{request.session.category_title}}</h2></div>
-    <div class="col-lg-8 col-lg-offset-2">
-        <div class="panel panel-primary">
-            <div class="panel-heading" id="new_thread_panel_header">
-                <h4>New thread</h4>
-            </div>
-            <div class="panel-body">
-                <form action='/new_thread/' method="post">
-                    {% csrf_token %}
-                    {% bootstrap_form form %}
-                    <input type="submit" class="btn btn-success" value="Create new thread">
-                </form>
-            </div>
-        </div>
-    </div>
     <div class="col-lg-12">
-        {% for key, value in threads_with_comments.items %}
-        <div class="panel panel-primary">
-            <div class="panel-heading clearfix">
-                <div class="col-lg-8" id="thread_title"><h4>#{{ key.id }}
-                    | {{ key.thread_title }}</h4></div>
-                <div class="col-lg-3" id="thread_date">
-                    <p>Created : {{ key.thread_date }}</p>
+        <div class="well well-sm" id="thread_category_header"><h2>{{ request.session.category_title }}</h2></div>
+        <div class="col-lg-8 col-lg-offset-2">
+            <div class="panel panel-primary">
+                <div class="panel-heading" id="new_thread_panel_header">
+                    <h4>New thread</h4>
                 </div>
-                <div class="col-lg-1">
-                    <a class="btn btn-success" href="{% url 'thread_page' key.id %}">Reply</a>
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="media">
-                    <div class="media-left">
-                        <img class="media-object logo_image" src="http://127.0.0.1:8000/{{key.thread_image}}"
-                             alt="No Image">
-                    </div>
-                    <div class="media-body">
-                        <p>{{ key.thread_text }}</p>
-                        <p>replies:
-                            {% for reply in value %}
-                                #{{ reply.id }},
-                            {% endfor %}
-                        </p>
-                    </div>
-                    {% for reply in value %}
-                    <div class="well reply">
-                        <div class="row">
-                            <div class="col-lg-11">
-                                <p>#{{ reply.id }} Created : {{ reply.reply_date }}</p>
-
-                                <p>>> {{ key.thread_title }}</p>
-                            </div>
-                        </div>
-                        {{ reply.reply_text }}
-                    </div>
-                    {% endfor %}
+                <div class="panel-body">
+                    <form action='/new_thread/' method="post">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <input type="submit" class="btn btn-success" value="Create new thread">
+                    </form>
                 </div>
             </div>
         </div>
-        {% endfor %}
+        <div class="col-lg-12">
+            {% for key, value in threads_with_replies.items %}
+                <div class="panel panel-primary">
+                    <div class="panel-heading clearfix">
+                        <div class="col-lg-8" id="thread_title"><h4>#{{ key.id }}
+                            | {{ key.thread_title }}</h4></div>
+                        <div class="col-lg-3" id="thread_date">
+                            <p>Created : {{ key.thread_date }}</p>
+                        </div>
+                        <div class="col-lg-1">
+                            <a class="btn btn-success" href="{% url 'thread_page' key.id %}">Reply</a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="media-left">
+                                <img class="media-object logo_image" src="http://127.0.0.1:8000/{{ key.thread_image }}"
+                                     alt="Thread image">
+                            </div>
+                            <div class="media-body">
+                                <p>{{ key.thread_text }}</p>
+
+                                <p>Replies:
+                                    {% for reply in value %}
+                                        <a href="{% url 'thread_page' key.id reply.id %}">#{{ reply.id }} </a>
+                                    {% endfor %}
+                                </p>
+                            </div>
+                            {% for reply in value %}
+                                <div class="well reply">
+                                    <div class="row">
+                                        <div class="col-lg-11">
+                                            <p>#{{ reply.id }} Created : {{ reply.reply_date }}</p>
+
+                                            <p>>> {{ key.thread_title }}</p>
+                                        </div>
+                                    </div>
+                                    {{ reply.reply_text }}
+                                </div>
+                            {% empty %}
+                                <div class="well reply">
+                                    This thread has no replies.... Yours will be the first!!!
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-</div>
 
 {% endblock %}

@@ -43,10 +43,12 @@ class Reply(models.Model):
         verbose_name = 'Reply'
         verbose_name_plural = 'Replies'
 
+    reply_author = models.CharField(max_length=250, verbose_name='Your name', blank=True)
+    reply_author_email = models.EmailField(verbose_name='Your e-mail', blank=True)
     reply_text = models.TextField(verbose_name='Reply text', blank=False)
     reply_date = models.DateTimeField(auto_now_add=True, verbose_name='Created', blank=False)
     reply_to_thread = models.ForeignKey(Thread, null=True)
-    reply_to_reply = models.ForeignKey("self", blank=True, null=True)
+    reply_to_reply = models.ForeignKey("self", blank=True, null=True, related_name='replies_to_this')
 
     def __str__(self):
         return str(self.id)

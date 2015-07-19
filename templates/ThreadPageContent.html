@@ -4,69 +4,86 @@
 
 
 {% block thread_content %}
-<div class="col-lg-12">
-    <div class="well well-sm" id="thread_category_header"><h2>{{ thread.thread_title }}</h2></div>
-    <div class="col-lg-8 col-lg-offset-2">
-        {% if form %}
-        <div class="panel panel-primary">
-            <div class="panel-heading" id="new_thread_panel_header">
-                <h4>New reply</h4>
-            </div>
-            <div class="panel-body">
-                <form action='/new_reply/' method="post">
-                    {% csrf_token %}
-                    {% bootstrap_form form %}
-                    <input type="submit" class="btn btn-success" value="Create new reply">
-                </form>
-            </div>
-        </div>
-        {% endif %}
-    </div>
     <div class="col-lg-12">
-        <div class="panel panel-primary">
-            <div class="panel-heading clearfix">
-                <div class="col-lg-8" id="thread_title"><h4>#{{ thread.id }}
-                    | {{ thread.thread_title }}</h4></div>
-                <div class="col-lg-3" id="thread_date">
-                    <p>Created : {{ thread.thread_date }}</p>
-                </div>
-                <div class="col-lg-1">
-                    <a class="btn btn-success" href="{% url 'thread_page' thread.id 0 1 %}">Reply</a>
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="media">
-                    <div class="media-left">
-                        <img class="media-object logo_image" src="http://127.0.0.1:8000/{{thread.thread_image}}"
-                             alt="Logo.jpg">
+        <div class="well well-sm" id="thread_category_header"><h2>{{ thread.thread_title }}</h2></div>
+        <div class="col-lg-8 col-lg-offset-2">
+            {% if form %}
+                <div class="panel panel-primary">
+                    <div class="panel-heading" id="new_thread_panel_header">
+                        <h4>New reply</h4>
                     </div>
-                    <div class="media-body">
-                        <p>{{ thread.thread_text }}</p>
-
-                        <p>replies:
-                            {% for reply in replies %}
-                            <a href="#">#{{ reply.id }}, </a>
-                            {% endfor %}
+                    <div class="panel-body">
+                        <form action='/new_reply/' method="post">
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                            <input type="submit" class="btn btn-success" value="Create new reply">
+                        </form>
                     </div>
                 </div>
-                {% for reply in replies %}
-                <div class="well reply">
-                    <div class="row">
-                        <div class="col-lg-11">
-                            <p>#{{ reply.id }} Created : {{ reply.reply_date }}</p>
-
-                            <p>>> {{ thread.thread_title }}</p>
+            {% endif %}
+        </div>
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading clearfix" id="{{ thread.id }}">
+                    <div class="col-lg-8" id="thread_title"><h4>#{{ thread.id }}
+                        | {{ thread.thread_title }}</h4></div>
+                    <div class="col-lg-3" id="thread_date">
+                        <p>Created : {{ thread.thread_date }}</p>
+                    </div>
+                    <div class="col-lg-1">
+                        <a class="btn btn-success" href="{% url 'thread_page' thread.id 0 1 %}">Reply</a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object logo_image" src="http://127.0.0.1:8000/{{ thread.thread_image }}"
+                                 alt="Logo.jpg">
                         </div>
-                        <div class="col-lg-1">
-                            <a class="btn btn-success" href="#">Reply</a>
+                        <div class="media-body">
+                            <p>{{ thread.thread_text }}</p>
+
+                            <p>replies:
+                                {% for reply in replies|slice:"-2:" reversed %}
+                                    <a href="#{{ reply.id }}">#{{ reply.id }}, </a>
+                                {% endfor %}
                         </div>
                     </div>
-                    {{ reply.reply_text }}
+                    {% for reply in replies %}
+                        <div class="well reply">
+                            <div class="row">
+                                <div class="col-lg-5" id="{{ reply.id }}">
+                                    <p>#{{ reply.id }} Created : {{ reply.reply_date }}</p>
+
+                                    <a href="#{{ thread.id }}">>> {{ thread.thread_title }}</a>
+                                </div>
+                                <div class="col-lg-5" id="{{ reply.id }}">
+                                    <p>Author:</p>
+                                </div>
+                                <div class="col-lg-2">
+                                    <a class="btn btn-success"
+                                       href="{% url 'thread_page' thread.id reply.id 1 %}">Reply to this reply</a>
+                                </div>
+                            </div>
+                            <div class="well success">
+                                {{ reply.reply_text }}
+                            </div>
+                            {% if reply.replies_to_this.all %}
+                                <p>Replies:
+                                    {% for reply in reply.replies_to_this.all %}
+                                        <a href="#{{ reply.id }}"> #{{ reply.id }}, </a>
+                                    {% endfor %}
+                                </p>
+                            {% endif %}
+                        </div>
+                    {% empty %}
+                        <div class="well reply">
+                            This thread has no replies.... Yours will be the first!!!
+                        </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
         </div>
     </div>
-</div>
 
 {% endblock %}

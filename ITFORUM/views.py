@@ -17,6 +17,13 @@ def categories_for_header(request):
         del categories_with_subcategories["Big Boss"]
     return categories_with_subcategories
 
+def replies_for_thread(request):
+    replies_with_replies = dict()
+    base_replies = Reply.objects.filter(reply_to_reply=None)
+    for reply in base_replies:
+        replies_with_replies[reply.id] = Reply.objects.filter(reply_to_reply__id=reply.id)
+    return replies_with_replies
+
 def start_page(request):
     args = dict()
     args['main_categories'] = categories_for_header(request)
@@ -56,12 +63,12 @@ def threads_category_page(request, category_id=6):
     request.session['category_id'] = category_id
     request.session['category_title'] = Category.objects.get(id=category_id).category_title
     # for threads
-    threads_with_comments = dict()
+    threads_with_replies = dict()
     threads = Thread.objects.filter(thread_category__id=category_id)
     for thread in threads:
         reversed_comments_list = list(reversed(Reply.objects.filter(reply_to_thread__id=thread.id)))
-        threads_with_comments[thread] = reversed_comments_list[:2]
-    args['threads_with_comments'] = threads_with_comments
+        threads_with_replies[thread] = reversed_comments_list[:2]
+    args['threads_with_replies'] = threads_with_replies
     return render_to_response("ThreadsPageContent.html", args, context_instance=RequestContext(request))
 
 def new_thread(request):
@@ -71,20 +78,19 @@ def new_thread(request):
             add = form.save(commit=False)
             add.thread_category_id = request.session['category_id']
             add.save()
-
-    # http://stackoverflow.com/a/12758859/3177550
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 def thread_page(request, thread_id=1, reply_id=0, form=0):
     args = dict()
     args['main_categories'] = categories_for_header(request)
+    args['replies'] = list(Reply.objects.filter(reply_to_thread__id=thread_id))
+    # args['replies'] = replies_for_thread(request, thread_id)
     request.session['thread_id'] = thread_id
     if form:
         args["form"] = ReplyForm
-    if reply_id:
-        request.session['reply_id'] = reply_id
+        if reply_id:
+            request.session['reply_id'] = reply_id
     args['thread'] = Thread.objects.get(id=thread_id)
-    args['replies'] = list(reversed(Reply.objects.filter(reply_to_thread__id=thread_id)))
     return render_to_response("ThreadPageContent.html", args, context_instance=RequestContext(request))
 
 def new_reply(request):
@@ -92,11 +98,8 @@ def new_reply(request):
         form = ReplyForm(request.POST)
         if form.is_valid():
             add = form.save(commit=False)
-            add.reply_to_thready_id = int(request.session['thread_id'])
+            add.reply_to_thread_id = request.session['thread_id']
             if request.session['reply_id']:
                 add.reply_to_reply_id = request.session['reply_id']
             add.save()
-
-    # http://stackoverflow.com/a/12758859/3177550
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-
