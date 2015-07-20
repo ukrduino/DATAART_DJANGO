@@ -1,8 +1,10 @@
-from django.forms import ModelForm
+from captcha.fields import CaptchaField
+from django.forms import ModelForm, ModelChoiceField
 from ITFORUM.models import Thread, Reply
 
 
 class ThreadForm(ModelForm):
+    captcha = CaptchaField()
 
     class Meta:
         model = Thread
@@ -10,7 +12,9 @@ class ThreadForm(ModelForm):
 
 
 class ReplyForm(ModelForm):
+    captcha = CaptchaField()
 
     class Meta:
         model = Reply
+        thread = ModelChoiceField(queryset=Thread.objects.all())
         exclude = ["pk", 'reply_to_thread', 'reply_to_reply']
