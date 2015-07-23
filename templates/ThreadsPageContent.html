@@ -36,7 +36,7 @@
                     <div class="panel-body">
                         <div class="media">
                             <div class="media-left">
-                                <img class="media-object logo_image" src="http://127.0.0.1:8000/{{ key.thread_image }}"
+                                <img class="media-object logo_image" src="http://{{ request.get_host }}/{{ key.thread_image }}"
                                      alt="Thread image">
                             </div>
                             <div class="media-body">

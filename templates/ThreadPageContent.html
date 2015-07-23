@@ -37,7 +37,7 @@
                 <div class="panel-body">
                     <div class="media">
                         <div class="media-left">
-                            <img class="media-object logo_image" src="http://127.0.0.1:8000/{{ thread.thread_image }}"
+                            <img class="media-object logo_image" src="http://{{ request.get_host }}/{{ thread.thread_image }}"
                                  alt="Logo.jpg">
                         </div>
                         <div class="media-body">
@@ -57,7 +57,7 @@
 
                                     <a href="#{{ thread.id }}">>> {{ thread.thread_title }}</a>
                                 </div>
-                                <div class="col-lg-5" id="{{ reply.id }}">
+                                <div class="col-lg-5">
                                     <p>Author:</p>
                                 </div>
                                 <div class="col-lg-2">
@@ -65,7 +65,7 @@
                                        href="{% url 'thread_page' thread.id reply.id 1 %}">Reply to this reply</a>
                                 </div>
                             </div>
-                            <div class="well success">
+                            <div class="well reply">
                                 {{ reply.reply_text }}
                             </div>
                             {% if reply.replies_to_this.all %}

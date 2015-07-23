@@ -3,14 +3,14 @@
 {% load bootstrap3 %}
 
 {% block board_page_header %}
-    <div class="row">
-        <div class="col-lg-2">
-            <img class="logo_image" src="{% static 'Logo.jpg' %}" alt="Logo.jpg">
-        </div>
-        <div class="col-lg-10">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4>Forums board</h4>
+<div class="row">
+    <div class="col-lg-2">
+        <img class="logo_image" src="{% static 'Logo.jpg' %}" alt="Logo.jpg">
+    </div>
+    <div class="col-lg-10">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Forums board</h4>
                     <span class="pull-right" id="loginAdmin">
                         {% if user.is_anonymous %}
                             <a href="{% url 'user_login' %}">Login</a>
@@ -19,21 +19,15 @@
                             |  <a href="{% url 'admin:index' %}">Admin</a>
                         {% endif %}
                     </span>
-                </div>
-                <div class="panel-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Proin augue augue, congue quis dui ut, ornare varius quam.
-                    Etiam molestie elementum velit vel facilisis. Phasellus posuere mauris eget velit interdum
-                    elementum. Maecenas porta, velit sit amet efficitur blandit, ligula sapien lobortis turpis, sed
-                    blandit arcu leo ut magna. Donec a erat lectus. Pellentesque at vestibulum elit. Donec accumsan
-                    ligula eget porta feugiat. Nulla a sem et ligula porta vehicula vitae sit amet est. Fusce sit amet
-                    fermentum nibh. Quisque viverra risus in mollis pellentesque.
-                </div>
+            </div>
+            <div class="panel-body">
+                {% lorem 1 p %}
             </div>
         </div>
     </div>
-    <div class="row">
-        {% block login %}{% endblock %}
-        {% block board_content %}{% endblock %}
-    </div>
+</div>
+<div class="row">
+    {% block login %}{% endblock %}
+    {% block board_content %}{% endblock %}
+</div>
 {% endblock %}

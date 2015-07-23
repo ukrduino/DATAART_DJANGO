@@ -66,4 +66,5 @@ ul.csv li:last-child:after { content: ""; }
 
 .reply{
     margin-top:20px;
+    hyphens: auto;
 }
