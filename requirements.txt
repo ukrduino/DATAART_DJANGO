@@ -4,3 +4,4 @@ django-mptt==0.8.0
 django-simple-captcha==0.5.1
 Pillow==3.0.0
 six==1.10.0
+

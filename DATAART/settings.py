@@ -96,12 +96,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_URL = '/media/'
-
-
-# # https://github.com/django-admin-bootstrapped/django-admin-bootstrapped
-# DAB_FIELD_RENDERER = 'django_admin_bootstrapped.renderers.BootstrapFieldRenderer'
-
-
+MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'media'))
+print("MEDIA_ROOT: " + MEDIA_ROOT)
 
 # CAPTCHA_FONT_SIZE ='30'
 CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
