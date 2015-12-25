@@ -1,5 +1,5 @@
 from django.contrib import admin
-from ITFORUM.models import *
+from IT_FORUM.models import *
 
 admin.site.register(Category)
 admin.site.register(Thread)

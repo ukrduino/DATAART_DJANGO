@@ -11,27 +11,20 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
-    'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ITFORUM',
+    'IT_FORUM',
     'captcha',
     'mptt',
     'bootstrap3',
 )
 
-DEBUG_APPS = ('debug_toolbar',)
-
-if not sys.platform.startswith('linux'):
-    if DEBUG:
-        INSTALLED_APPS += DEBUG_APPS
 
 MIDDLEWARE_CLASSES = (
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -117,4 +110,4 @@ CAPTCHA_BACKGROUND_COLOR = 'white'
 CAPTCHA_FOREGROUND_COLOR = '#000'
 CAPTCHA_NOISE_FUNCTIONS = ()
 
-AUTHENTICATION_BACKENDS = ('ITFORUM.models.ModelBackend',)
+AUTHENTICATION_BACKENDS = ('IT_FORUM.models.ModelBackend',)

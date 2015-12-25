@@ -1,8 +1,8 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, redirect, render
 from django.template import RequestContext
-from ITFORUM.forms import ThreadForm, ReplyForm
-from ITFORUM.models import Category, Thread, Reply
+from IT_FORUM.forms import ThreadForm, ReplyForm
+from IT_FORUM.models import Category, Thread, Reply
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 
