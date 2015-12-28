@@ -30,12 +30,12 @@
                         </dl>
                     </div>
                     <div class="media-right">
-                        <img class="media-object logo_image" src="{% static 'Logo.jpg' %}" alt="{% static 'ImageNot.jpg' %}">
+                        <img class="media-object logo_image" src="{% static 'site_images/Logo.jpg' %}" alt="{% static 'site_images/ImageNot.jpg' %}">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {% block threads_content %}{% endblock %}
-    {% block thread_content %}{% endblock %}
+    {% block threads_page_content %}{% endblock %}
+    {% block one_thread_page_content %}{% endblock %}
 {% endblock %}

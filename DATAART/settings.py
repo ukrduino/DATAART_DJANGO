@@ -18,8 +18,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'IT_FORUM',
-    'captcha',
-    'mptt',
     'bootstrap3',
 )
 
@@ -95,15 +93,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'media'))
-print("MEDIA_ROOT: " + MEDIA_ROOT)
-
-# CAPTCHA_FONT_SIZE ='30'
-CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
-CAPTCHA_LETTER_ROTATION = (-5, 5)
-CAPTCHA_BACKGROUND_COLOR = 'white'
-CAPTCHA_FOREGROUND_COLOR = '#000'
-CAPTCHA_NOISE_FUNCTIONS = ()
 
 AUTHENTICATION_BACKENDS = ('IT_FORUM.models.ModelBackend',)

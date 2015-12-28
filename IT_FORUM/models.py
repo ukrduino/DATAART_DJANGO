@@ -32,7 +32,7 @@ class Thread(models.Model):
     thread_date = models.DateTimeField(auto_now_add=True, verbose_name='Created', blank=False)
     thread_change_date = models.DateTimeField(auto_now=True, verbose_name='Changed')
     thread_category = models.ForeignKey(Category)
-    thread_image = models.ImageField(default='static/ImageNot.jpg')
+    thread_image = models.ImageField(upload_to=MEDIA_ROOT, default="static/ImageNot.jpg")
 
     def __str__(self):
         return self.thread_title

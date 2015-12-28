@@ -1,10 +1,9 @@
-from captcha.fields import CaptchaField
+
 from django.forms import ModelForm, ModelChoiceField
 from IT_FORUM.models import Thread, Reply
 
 
 class ThreadForm(ModelForm):
-    captcha = CaptchaField()
 
     class Meta:
         model = Thread
@@ -12,7 +11,6 @@ class ThreadForm(ModelForm):
 
 
 class ReplyForm(ModelForm):
-    captcha = CaptchaField()
 
     class Meta:
         model = Reply

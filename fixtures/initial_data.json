@@ -1,41 +1,41 @@
 [
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 1,
     "fields": {
       "category_title": "Hobbies"
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 2,
     "fields": {
       "category_title": "Hi-Tech"
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 3,
     "fields": {
       "category_title": "Talks"
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 4,
     "fields": {
       "category_title": "Big Boss"
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 5,
     "fields": {
       "category_title": "HR"
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 6,
     "fields": {
       "category_title": "Football",
@@ -43,7 +43,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 7,
     "fields": {
       "category_title": "Basketball",
@@ -51,7 +51,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 8,
     "fields": {
       "category_title": "Volleyball",
@@ -59,7 +59,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 9,
     "fields": {
       "category_title": "Skills",
@@ -67,7 +67,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 10,
     "fields": {
       "category_title": "Haskell",
@@ -75,7 +75,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 11,
     "fields": {
       "category_title": ".NET",
@@ -83,7 +83,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 12,
     "fields": {
       "category_title": "Java",
@@ -91,7 +91,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 13,
     "fields": {
       "category_title": "Kharkov",
@@ -99,7 +99,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 14,
     "fields": {
       "category_title": "Kherson",
@@ -107,7 +107,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 15,
     "fields": {
       "category_title": "Kiev",
@@ -115,7 +115,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 16,
     "fields": {
       "category_title": "Audit",
@@ -123,7 +123,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 17,
     "fields": {
       "category_title": "Managers",
@@ -131,7 +131,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 18,
     "fields": {
       "category_title": "Idle",
@@ -139,7 +139,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 19,
     "fields": {
       "category_title": "Stuffing",
@@ -147,7 +147,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 20,
     "fields": {
       "category_title": "PHP",
@@ -155,7 +155,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 21,
     "fields": {
       "category_title": "Python",
@@ -163,7 +163,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 22,
     "fields": {
       "category_title": "Ruby",
@@ -171,7 +171,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 23,
     "fields": {
       "category_title": "C++",
@@ -179,7 +179,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 24,
     "fields": {
       "category_title": "Linux",
@@ -187,7 +187,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 25,
     "fields": {
       "category_title": "Mac",
@@ -195,7 +195,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 26,
     "fields": {
       "category_title": "NoSQL",
@@ -203,7 +203,7 @@
     }
   },
   {
-    "model": "ITFORUM.Category",
+    "model": "IT_FORUM.Category",
     "pk": 27,
     "fields": {
       "category_title": "RMDB",
@@ -211,7 +211,7 @@
     }
   },
   {
-    "model": "ITFORUM.Thread",
+    "model": "IT_FORUM.Thread",
     "pk": 1,
     "fields": {
       "thread_title": "What is football",
@@ -223,7 +223,7 @@
     }
   },
   {
-    "model": "ITFORUM.Thread",
+    "model": "IT_FORUM.Thread",
     "pk": 2,
     "fields": {
       "thread_title": "Association football",
@@ -235,7 +235,7 @@
     }
   },
     {
-    "model": "ITFORUM.Reply",
+    "model": "IT_FORUM.Reply",
     "pk": 1,
     "fields": {
       "reply_text": "The various codes of football share certain common elements.",
@@ -244,7 +244,7 @@
     }
   },
   {
-    "model": "ITFORUM.Reply",
+    "model": "IT_FORUM.Reply",
     "pk": 2,
     "fields": {
       "reply_text": "Players in American football, Canadian football, rugby union...",

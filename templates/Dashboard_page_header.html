@@ -5,7 +5,7 @@
 {% block board_page_header %}
 <div class="row">
     <div class="col-lg-2">
-        <img class="logo_image" src="{% static 'Logo.jpg' %}" alt="Logo.jpg">
+        <img class="logo_image" src="{% static 'site_images/Logo.jpg' %}" alt="Logo.jpg">
     </div>
     <div class="col-lg-10">
         <div class="panel panel-primary">
@@ -27,7 +27,7 @@
     </div>
 </div>
 <div class="row">
-    {% block login %}{% endblock %}
-    {% block board_content %}{% endblock %}
+    {% block login_page %}{% endblock %}
+    {% block dashboard_page_content %}{% endblock %}
 </div>
 {% endblock %}
