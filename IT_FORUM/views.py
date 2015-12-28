@@ -6,15 +6,19 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 
 
-def get_categories_for_header(request):
+def get_categories_and_subcategories(request):
     categories_with_subcategories_dict = dict()
-    main_categories = Category.objects.filter(parent_category=None)
-    for main_category in main_categories:
-        categories_with_subcategories_dict[main_category.category_title] = Category\
-            .objects.filter(parent_category__category_title=main_category.category_title)
-    if request.user.is_anonymous():
-        del categories_with_subcategories_dict["HR"]
-        del categories_with_subcategories_dict["Big Boss"]
+    categories_with_subcategories_dict["Hobbies"] = Category.objects.filter(
+        parent_category__category_title="Hobbies")
+    categories_with_subcategories_dict["Hi_Tech"] = Category.objects.filter(
+        parent_category__category_title="Hi-Tech")
+    categories_with_subcategories_dict["Talks"] = Category.objects.filter(
+        parent_category__category_title="Talks")
+    if request.user.is_authenticated():
+        categories_with_subcategories_dict["Big_Boss"] = Category.objects\
+            .filter(parent_category__category_title="Big Boss")
+        categories_with_subcategories_dict["HR"] = Category.objects.filter(
+            parent_category__category_title="HR")
     return categories_with_subcategories_dict
 
 
@@ -22,13 +26,14 @@ def replies_for_thread(request):
     replies_with_replies = dict()
     base_replies = Reply.objects.filter(reply_to_reply=None)
     for reply in base_replies:
-        replies_with_replies[reply.id] = Reply.objects.filter(reply_to_reply__id=reply.id)
+        replies_with_replies[reply.id] = Reply.objects.filter(
+            reply_to_reply__id=reply.id)
     return replies_with_replies
 
 
 def show_home_page(request):
     args = dict()
-    args['main_categories'] = get_categories_for_header(request)
+    args['main_categories'] = get_categories_and_subcategories(request)
     return render(request, "Dashboard_page_content.html", args)
 
 
@@ -61,16 +66,18 @@ def user_logout(request):
 
 def threads_category_page(request, category_id=6):
     args = dict()
-    args['main_categories'] = get_categories_for_header(request)
+    args['main_categories'] = get_categories_and_subcategories(request)
     # for form
     args["form"] = ThreadForm
     request.session['category_id'] = category_id
-    request.session['category_title'] = Category.objects.get(id=category_id).category_title
+    request.session['category_title'] = Category.objects.get(id=category_id)\
+        .category_title
     # for threads
     threads_with_replies = dict()
     threads = Thread.objects.filter(thread_category__id=category_id)
     for thread in threads:
-        reversed_comments_list = list(reversed(Reply.objects.filter(reply_to_thread__id=thread.id)))
+        reversed_comments_list = list(reversed(Reply.objects.filter(
+            reply_to_thread__id=thread.id)))
         threads_with_replies[thread] = reversed_comments_list[:2]
     args['threads_with_replies'] = threads_with_replies
     return render(request, "Threads_page_content.html", args)
@@ -88,7 +95,7 @@ def new_thread(request):
 
 def thread_page(request, thread_id=1, reply_id=0, form=0):
     args = dict()
-    args['main_categories'] = get_categories_for_header(request)
+    args['main_categories'] = get_categories_and_subcategories(request)
     args['replies'] = list(Reply.objects.filter(reply_to_thread__id=thread_id))
     # args['replies'] = replies_for_thread(request, thread_id)
     request.session['thread_id'] = thread_id

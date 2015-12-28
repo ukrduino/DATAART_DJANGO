@@ -4,28 +4,86 @@
 
 
 {% block dashboard_page_content %}
-<div class="col-lg-4">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            *UPDATES*
-        </div>
-        <div class="panel-body">
-
-        </div>
-    </div>
-</div>
-{% for key, value in main_categories.items %}
-<div class="col-lg-2">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h4>{{ key }}</h4>
-        </div>
-        <div class="panel-body">
-            {% for sub_cat in value %}
-                <p><a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat.category_title }}</a></p>
-            {% endfor %}
+    <div class="col-lg-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                *UPDATES*
+            </div>
+            <div class="panel-body"></div>
         </div>
     </div>
-</div>
-{% endfor %}
+    <div class="col-lg-2">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Hobbies</h4>
+            </div>
+            <div class="panel-body">
+                {% for sub_cat in main_categories.Hobbies %}
+                    <p>
+                        <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat.category_title }}</a>
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Hi-Tech</h4>
+            </div>
+            <div class="panel-body">
+                {% for sub_cat in main_categories.Hi_Tech %}
+                    <p>
+                        <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat.category_title }}</a>
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Talks</h4>
+            </div>
+            <div class="panel-body">
+                {% for sub_cat in main_categories.Talks %}
+                    <p>
+                        <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat.category_title }}</a>
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        {% if main_categories.Big_Boss %}
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4>Big Boss</h4>
+                    </div>
+                    <div class="panel-body">
+                        {% for sub_cat in main_categories.Big_Boss %}
+                            <p>
+                                <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat.category_title }}</a>
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4>HR</h4>
+                    </div>
+                    <div class="panel-body">
+                        {% for sub_cat in main_categories.HR %}
+                            <p>
+                                <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat.category_title }}</a>
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

@@ -2,32 +2,34 @@
 {% load staticfiles %}
 {% load bootstrap3 %}
 
-{% block board_page_header %}
-<div class="row">
-    <div class="col-lg-2">
-        <img class="logo_image" src="{% static 'site_images/Logo.jpg' %}" alt="Logo.jpg">
-    </div>
-    <div class="col-lg-10">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h4>Forums board</h4>
+{% block dashboard_page_header %}
+    <div class="row">
+        <div class="col-lg-2">
+            <img class="logo_image" src="{% static 'site_images/Logo.jpg' %}"
+                 alt="Logo.jpg">
+        </div>
+        <div class="col-lg-10">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Forums board</h4>
                     <span class="pull-right" id="loginAdmin">
                         {% if user.is_anonymous %}
                             <a href="{% url 'user_login' %}">Login</a>
                         {% else %}
-                            Logged in as {{ user }} (<a href="{% url 'user_logout' %}">logout</a>)
+                            Logged in as {{ user }} (
+                            <a href="{% url 'user_logout' %}">logout</a>)
                             |  <a href="{% url 'admin:index' %}">Admin</a>
                         {% endif %}
                     </span>
-            </div>
-            <div class="panel-body">
-                {% lorem 1 p %}
+                </div>
+                <div class="panel-body">
+                    {% lorem 1 p %}
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    {% block login_page %}{% endblock %}
-    {% block dashboard_page_content %}{% endblock %}
-</div>
+    <div class="row">
+        {% block login_page %}{% endblock %}
+        {% block dashboard_page_content %}{% endblock %}
+    </div>
 {% endblock %}
