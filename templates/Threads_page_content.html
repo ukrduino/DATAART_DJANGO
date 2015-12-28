@@ -5,9 +5,20 @@
 
 {% block threads_page_content %}
     <div class="col-lg-12">
-        <div class="well well-sm" id="thread_category_header"><h2>{{ request.session.category_title }}</h2></div>
+        <div class="well" id="thread_category_header">
+            <div class="row">
+                <div class="col-lg-9 col-lg-offset-1">
+                    <h3>{{ request.session.category_title }}</h3>
+                </div>
+                <div class="col-lg-1" id="show_add_thread_form_div">
+                    <a class="btn btn-primary" id="show_add_thread_form">
+                        Add Thread
+                    </a>
+                </div>
+            </div>
+        </div>
         <div class="col-lg-8 col-lg-offset-2">
-            <div class="panel panel-primary">
+            <div class="panel panel-primary" id="new_thread_panel">
                 <div class="panel-heading" id="new_thread_panel_header">
                     <h4>New thread</h4>
                 </div>
@@ -15,7 +26,8 @@
                     <form action='/new_thread/' method="post">
                         {% csrf_token %}
                         {% bootstrap_form form %}
-                        <input type="submit" class="btn btn-success" value="Create new thread">
+                        <input type="submit" class="btn btn-success"
+                               value="Create new thread">
                     </form>
                 </div>
             </div>
@@ -24,19 +36,22 @@
             {% for key, value in threads_with_replies.items %}
                 <div class="panel panel-primary">
                     <div class="panel-heading clearfix">
-                        <div class="col-lg-8" id="thread_title"><h4>#{{ key.id }}
+                        <div class="col-lg-8" id="thread_title"><h4>
+                            #{{ key.id }}
                             | {{ key.thread_title }}</h4></div>
                         <div class="col-lg-3" id="thread_date">
                             <p>Created : {{ key.thread_date }}</p>
                         </div>
                         <div class="col-lg-1">
-                            <a class="btn btn-success" href="{% url 'thread_page' key.id %}">Reply</a>
+                            <a class="btn btn-success"
+                               href="{% url 'thread_page' key.id %}">Reply</a>
                         </div>
                     </div>
                     <div class="panel-body">
                         <div class="media">
                             <div class="media-left">
-                                <img class="media-object logo_image" src="http://{{ request.get_host }}/{{ key.thread_image }}"
+                                <img class="media-object logo_image"
+                                     src="http://{{ request.get_host }}/{{ key.thread_image }}"
                                      alt="Thread image">
                             </div>
                             <div class="media-body">
@@ -52,7 +67,8 @@
                                 <div class="well reply">
                                     <div class="row">
                                         <div class="col-lg-11">
-                                            <p>#{{ reply.id }} Created : {{ reply.reply_date }}</p>
+                                            <p>#{{ reply.id }} Created
+                                                : {{ reply.reply_date }}</p>
 
                                             <p>>> {{ key.thread_title }}</p>
                                         </div>
@@ -61,7 +77,8 @@
                                 </div>
                             {% empty %}
                                 <div class="well reply">
-                                    This thread has no replies.... Yours will be the first!!!
+                                    This thread has no replies.... Yours will
+                                    be the first!!!
                                 </div>
                             {% endfor %}
                         </div>

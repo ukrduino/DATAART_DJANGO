@@ -40,11 +40,12 @@ ul.csv li:last-child:after { content: ""; }
 #new_thread_panel_header{
     text-align: center;
 }
+#new_thread_panel{
+    display: none;
+}
 
 #thread_category_header{
     text-align: center;
-    background-color:#9AD2FA
-
 }
 
 #thread_title{
