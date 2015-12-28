@@ -44,8 +44,10 @@ ul.csv li:last-child:after { content: ""; }
     display: none;
 }
 
-#thread_category_header{
+#thread_category_header > h3, #show_add_thread_form_div{
     text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
 }
 
 #thread_title{
