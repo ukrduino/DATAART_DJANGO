@@ -1,4 +1,6 @@
 from django.conf.urls import url
+from django.conf.urls.static import static
+from DATAART import settings
 from IT_FORUM.views import *
 
 urlpatterns = [
@@ -11,4 +13,5 @@ urlpatterns = [
     url(r'thread/([0-9]+)/$', thread_page, name="thread_page"),
     url(r'new_reply/$', new_reply, name='new_reply'),
     url(r'set_reply_id/$', set_reply_id),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

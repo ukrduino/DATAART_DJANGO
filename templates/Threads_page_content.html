@@ -18,7 +18,7 @@
                 <span class="glyphicon glyphicon-remove" id="close_add_thread_form" aria-hidden="true"></span>
             </div>
             <div class="panel-body">
-                <form action='/new_thread/' method="post">
+                <form action='/new_thread/' method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% bootstrap_form form %}
                     <input type="submit" class="btn btn-success" value="Create new thread">
@@ -44,7 +44,7 @@
                 <div class="panel-body">
                     <div class="media">
                         <div class="media-left">
-                            <img class="media-object logo_image" src="http://{{ request.get_host }}/{{ thread.thread_image }}" alt="Thread image">
+                            <img class="media-object logo_image" src="{{ thread.thread_image.url }}" alt="Thread image">
                         </div>
                         <div class="media-body">
                             <p>{{ thread.thread_text }}</p>
