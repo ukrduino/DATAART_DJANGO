@@ -27,20 +27,15 @@ h4 {
     text-align: right;
 }
 
-/*comma separated list*/
-ul.csv { list-style: none; margin: 0; padding: 0; }
-ul.csv li { display: inline; }
-ul.csv li:after { content: ","; }
-ul.csv li:last-child:after { content: ""; }
 
 .bottom_buffer{
     height: 50px;
 }
 
-#new_thread_panel_header{
+#new_thread_form_header, #new_reply_form_header{
     text-align: center;
 }
-#new_thread_panel{
+#new_thread_form, #new_reply_form{
     display: none;
 }
 
@@ -70,4 +65,12 @@ ul.csv li:last-child:after { content: ""; }
 .reply{
     margin-top:20px;
     hyphens: auto;
+}
+
+#close_add_reply_form, #close_add_thread_form{
+    float:right;
+}
+
+#button_div{
+    text-align: right;
 }

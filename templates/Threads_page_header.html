@@ -18,33 +18,21 @@
                         <dl class="dl-horizontal">
                             <dt>Hobbies</dt>
                             <dd>
-                                <ul class="csv">
-                                    {% for sub_cat in main_categories.Hobbies %}
-                                        <li>
-                                            <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat }}</a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
+                                {% for sub_cat in main_categories.Hobbies %}
+                                    <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat }}&nbsp</a>
+                                {% endfor %}
                             </dd>
                             <dt>Hi-Tech</dt>
                             <dd>
-                                <ul class="csv">
-                                    {% for sub_cat in main_categories.Hi_Tech %}
-                                        <li>
-                                            <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat }}</a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
+                                {% for sub_cat in main_categories.Hi_Tech %}
+                                    <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat }}&nbsp</a>
+                                {% endfor %}
                             </dd>
                             <dt>Talks</dt>
                             <dd>
-                                <ul class="csv">
-                                    {% for sub_cat in main_categories.Talks %}
-                                        <li>
-                                            <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat }}</a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
+                                {% for sub_cat in main_categories.Talks %}
+                                    <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat }}&nbsp</a>
+                                {% endfor %}
                             </dd>
                         </dl>
                         {% if main_categories.Big_Boss %}
@@ -52,13 +40,9 @@
                                 <dl class="dl-horizontal">
                                     <dt>Big Boss</dt>
                                     <dd>
-                                        <ul class="csv">
-                                            {% for sub_cat in main_categories.Big_Boss %}
-                                                <li>
-                                                    <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat }}</a>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
+                                        {% for sub_cat in main_categories.Big_Boss %}
+                                            <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat }}&nbsp</a>
+                                        {% endfor %}
                                     </dd>
                                 </dl>
                             </div>
@@ -66,13 +50,9 @@
                                 <dl class="dl-horizontal">
                                     <dt>HR</dt>
                                     <dd>
-                                        <ul class="csv">
-                                            {% for sub_cat in main_categories.HR %}
-                                                <li>
-                                                    <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat }}</a>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
+                                        {% for sub_cat in main_categories.HR %}
+                                            <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat }}&nbsp</a>
+                                        {% endfor %}
                                     </dd>
                                 </dl>
                             </div>

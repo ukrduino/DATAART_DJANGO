@@ -69,9 +69,14 @@ def show_threads_page(request, category_id=6):
     threads_with_replies_dict = dict()
     threads = Thread.objects.filter(thread_category__id=category_id)
     for thread in threads:
-        comments_list = list(Reply.objects.filter(
-            reply_to_thread__id=thread.id))
-        threads_with_replies_dict[thread] = comments_list[-2:]
+        # for each thread we get two last replies
+        replies_list = list(Reply.objects.filter(reply_to_thread__id=thread.id))[-2:]
+        reply_with_sub_replies_dict = dict()
+        for reply in replies_list:
+            # for each reply we get sub replies
+            sub_replies = Reply.objects.filter(reply_to_reply__id=reply.id)
+            reply_with_sub_replies_dict[reply] = sub_replies
+        threads_with_replies_dict[thread] = reply_with_sub_replies_dict
     args['threads_with_replies'] = threads_with_replies_dict
     return render(request, "Threads_page_content.html", args)
 
@@ -86,18 +91,19 @@ def new_thread(request):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
-def thread_page(request, thread_id=1, reply_id=0, form=0):
+def thread_page(request, thread_id=1):
     args = dict()
     args['main_categories'] = get_cat_and_subcat_dict(request)
     args['replies'] = list(Reply.objects.filter(reply_to_thread__id=thread_id))
-    # args['replies'] = replies_for_thread(request, thread_id)
     request.session['thread_id'] = thread_id
-    if form:
-        args["form"] = ReplyForm
-        if reply_id:
-            request.session['reply_id'] = reply_id
+    args["form"] = ReplyForm
     args['thread'] = Thread.objects.get(id=thread_id)
     return render(request, "One_thread_content.html", args)
+
+
+def set_reply_id(request):
+    request.session['reply_id'] = request.POST['reply_id']
+    return HttpResponse("reply_id was set")
 
 
 def new_reply(request):
@@ -108,5 +114,6 @@ def new_reply(request):
             add.reply_to_thread_id = request.session['thread_id']
             if request.session['reply_id']:
                 add.reply_to_reply_id = request.session['reply_id']
+                request.session['reply_id'] = 0
             add.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))

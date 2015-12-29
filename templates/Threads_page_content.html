@@ -4,82 +4,80 @@
 
 
 {% block threads_page_content %}
-        <div class="col-lg-9 col-lg-offset-1" id="thread_category_header">
-            <h3>{{ threads_category_tittle }}</h3>
-        </div>
-        <div class="col-lg-2" id="show_add_thread_form_div">
-            <a class="btn btn-primary" id="show_add_thread_form">
-                Add Thread
-            </a>
-        </div>
+    <div class="col-lg-10" id="thread_category_header">
+        <h3>{{ threads_category_tittle }}</h3>
+    </div>
+    <div class="col-lg-2" id="button_div">
+        <a class="btn btn-primary" id="show_add_thread_form">Add Thread</a>
+    </div>
+    {#    new_thread_form     #}
     <div class="col-lg-8 col-lg-offset-2">
-        <div class="panel panel-primary" id="new_thread_panel">
-            <div class="panel-heading" id="new_thread_panel_header">
+        <div class="panel panel-primary" id="new_thread_form">
+            <div class="panel-heading" id="new_thread_form_header">
                 <h4>New thread</h4>
+                <span class="glyphicon glyphicon-remove" id="close_add_thread_form" aria-hidden="true"></span>
             </div>
             <div class="panel-body">
                 <form action='/new_thread/' method="post">
                     {% csrf_token %}
                     {% bootstrap_form form %}
-                    <input type="submit" class="btn btn-success"
-                           value="Create new thread">
+                    <input type="submit" class="btn btn-success" value="Create new thread">
                 </form>
             </div>
         </div>
     </div>
+    {#    thread pannel beginning   #}
     <div class="col-lg-12">
-        {% for key, value in threads_with_replies.items %}
+        {% for thread, reply_with_sub_replies_dict in threads_with_replies.items %}
             <div class="panel panel-default">
                 <div class="panel-heading clearfix">
-                    <div class="col-lg-8" id="thread_title"><h4>
-                        #{{ key.id }}
-                        | {{ key.thread_title }}</h4></div>
-                    <div class="col-lg-3" id="thread_date">
-                        <p>Created : {{ key.thread_date }}</p>
+                    <div class="col-lg-7" id="thread_title">
+                        <h4>#{{ thread.id }} | {{ thread.thread_title }}</h4>
                     </div>
-                    <div class="col-lg-1">
-                        <a class="btn btn-success"
-                           href="{% url 'thread_page' key.id %}">Reply</a>
+                    <div class="col-lg-3" id="thread_date">
+                        <p>Created : {{ thread.thread_date }}</p>
+                    </div>
+                    <div class="col-lg-2" id="button_div">
+                        <a class="btn btn-success" href="{% url 'thread_page' thread.id %}">Read / Reply</a>
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="media">
                         <div class="media-left">
-                            <img class="media-object logo_image"
-                                 src="http://{{ request.get_host }}/{{ key.thread_image }}"
-                                 alt="Thread image">
+                            <img class="media-object logo_image" src="http://{{ request.get_host }}/{{ thread.thread_image }}" alt="Thread image">
                         </div>
                         <div class="media-body">
-                            <p>{{ key.thread_text }}</p>
-
-                            <p>Replies:
-                                {% for reply in value %}
-                                    <a href="{% url 'thread_page' key.id reply.id %}">#{{ reply.id }} </a>
-                                {% endfor %}
-                            </p>
+                            <p>{{ thread.thread_text }}</p>
+                            {% if reply_with_sub_replies_dict %}
+                                <p>Replies:
+                                    {% for reply, sub_replies in reply_with_sub_replies_dict.items %}
+                                        <a href="{% url 'thread_page' thread.id %}"> #{{ reply.id }}&nbsp</a>
+                                    {% endfor %}
+                                </p>
+                            {% endif %}
                         </div>
-                        {% for reply in value %}
+                        {% for reply, sub_replies in reply_with_sub_replies_dict.items %}
                             <div class="well reply">
-                                <div class="row">
-                                    <div class="col-lg-11">
-                                        <p>#{{ reply.id }} Created
-                                            : {{ reply.reply_date }}</p>
-
-                                        <p>>> {{ key.thread_title }}</p>
-                                    </div>
-                                </div>
-                                {{ reply.reply_text }}
+                                <p>#{{ reply.id }} Created : {{ reply.reply_date }}</p>
+                                <a href="#{{ thread.id }}">>> {{ thread.thread_title }}&nbsp</a>
+                                {% if reply.reply_to_reply %}
+                                    <a href="#{{ reply.reply_to_reply }}">>> #{{ reply.reply_to_reply }}</a>
+                                {% endif %}
+                                <div class="well reply">{{ reply.reply_text }}</div>
+                                {% if reply.replies_to_this.all %}
+                                    <p>Replies:
+                                    {% for sub_reply in sub_replies %}
+                                        <a href="{% url 'thread_page' thread.id %}">#{{ sub_reply.id }}&nbsp</a>
+                                    {% endfor %}
+                                {% endif %}
                             </div>
                         {% empty %}
-                            <div class="well reply">
-                                This thread has no replies.... Yours will
-                                be the first!!!
-                            </div>
+                            <div class="well reply">This thread has no replies.... Yours will be the first!!!</div>
                         {% endfor %}
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
-
+    {#    thread pannel end   #}
 {% endblock %}
