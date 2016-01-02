@@ -82,9 +82,17 @@ def show_threads_page(request, category_id=6):
     args['main_categories'] = get_cat_and_subcat_dict(request)
     args['threads_category_tittle'] = Category.objects.get(id=category_id)\
         .category_title
+    # Populating form with user name and email if user if logged in
+    if request.user.is_authenticated():
+        form = ThreadForm(initial={'thread_author': request.user.get_username(),
+                                   'thread_author_email': request.user.email})
+        form.fields['thread_author'].widget.attrs['readonly'] = True
+        form.fields['thread_author_email'].widget.attrs['readonly'] = True
+        args["form"] = form
+    else:
+        args["form"] = ThreadForm
     # category_id will be used in processing of new thread form to create
     # new thread in certain category
-    args["form"] = ThreadForm
     request.session['category_id'] = category_id
     threads_with_replies_dict = dict()
     threads = Thread.objects.filter(thread_category__id=category_id)
@@ -116,7 +124,15 @@ def thread_page(request, thread_id=1):
     args['main_categories'] = get_cat_and_subcat_dict(request)
     args['replies'] = list(Reply.objects.filter(reply_to_thread__id=thread_id))
     request.session['thread_id'] = thread_id
-    args["form"] = ReplyForm
+    # Populating form with user name and email if user if logged in
+    if request.user.is_authenticated():
+        form = ReplyForm(initial={'reply_author': request.user.get_username(),
+                                  'reply_author_email': request.user.email})
+        form.fields['reply_author'].widget.attrs['readonly'] = True
+        form.fields['reply_author_email'].widget.attrs['readonly'] = True
+        args["form"] = form
+    else:
+        args["form"] = ReplyForm
     args['thread'] = Thread.objects.get(id=thread_id)
     return render(request, "One_thread_content.html", args)
 

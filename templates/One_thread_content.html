@@ -38,7 +38,7 @@
             <div class="panel-body">
                 <div class="media">
                     <div class="media-left">
-                        <img class="media-object logo_image" src="http://{{ request.get_host }}/{{ thread.thread_image.url }}" alt="Logo.jpg">
+                        <img class="media-object logo_image" src="{{ thread.thread_image.url }}" alt="Thread photo.jpg">
                     </div>
                     <div class="media-body">
                         <p>{{ thread.thread_text }}</p>
