@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^$', show_home_page, name="home"),
     url(r'login$', user_login, name='user_login'),
     url(r'logout$', user_logout, name='user_logout'),
+    url(r'register$', user_register, name='user_register'),
     url(r'threads_category/([0-9]+)/$', show_threads_page,
         name='threads_category_page'),
     url(r'new_thread/$', new_thread, name='new_thread'),

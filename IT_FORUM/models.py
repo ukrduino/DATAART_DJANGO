@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth import backends, get_user_model
+from django.db.models import Q
 
 
 class Category(models.Model):
@@ -28,7 +30,6 @@ class Thread(models.Model):
     thread_title = models.CharField(max_length=250, verbose_name='Thread title', blank=False, unique=True)
     thread_text = models.TextField(verbose_name='Thread description', blank=False)
     thread_date = models.DateTimeField(auto_now_add=True, verbose_name='Created', blank=False)
-    thread_change_date = models.DateTimeField(auto_now=True, verbose_name='Changed')
     thread_category = models.ForeignKey(Category)
     thread_image = models.ImageField(upload_to="", default="ImageNot.jpg")
 
@@ -58,20 +59,15 @@ class Reply(models.Model):
     def __unicode__(self):
         return str(self.id)
 
-from django.contrib.auth import backends, get_user_model
-from django.db.models import Q
-
 
 class ModelBackend(backends.ModelBackend):
     def authenticate(self, username=None, password=None, **kwargs):
-        UserModel = get_user_model()
+        user_model = get_user_model()
 
         try:
-            user = UserModel.objects.get(Q(username__iexact=username) | Q(email__iexact=username))
+            user = user_model.objects.get(Q(username__iexact=username) | Q(email__iexact=username))
 
             if user.check_password(password):
                 return user
-        except UserModel.DoesNotExist:
-            # Run the default password hasher once to reduce the timing
-            # difference between an existing and a non-existing user (#20760).
-            UserModel().set_password(password)
+        except user_model.DoesNotExist:
+            user_model().set_password(password)

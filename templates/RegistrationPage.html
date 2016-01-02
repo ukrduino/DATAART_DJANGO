@@ -1,0 +1,14 @@
+{% extends 'Dashboard_page_header.html' %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% block registration_page %}
+    <div class="col-lg-4 col-lg-offset-4 ">
+        <h3>Registration</h3>
+        <form action="" method="post" id="registrationForm">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <input type="submit" class="btn btn-success" value="Register">
+        </form>
+    </div>
+{% endblock %}

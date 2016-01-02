@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
-from IT_FORUM.forms import ThreadForm, ReplyForm
+from IT_FORUM.forms import ThreadForm, ReplyForm, UserCreateForm
 from IT_FORUM.models import Category, Thread, Reply
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
@@ -55,6 +55,26 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('/')
+
+
+def user_register(request):
+    if request.method == 'POST':
+        form = UserCreateForm(request.POST)
+        if form.is_valid():
+            # save the new user first
+            form.save()
+            # get the username and password
+            username = request.POST['username']
+            password = request.POST['password1']
+            # authenticate user then login
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return HttpResponseRedirect('/')
+    else:
+        form = UserCreateForm()
+    return render(request, 'RegistrationPage.html', {
+        'form': form,
+    })
 
 
 def show_threads_page(request, category_id=6):
@@ -112,8 +132,12 @@ def new_reply(request):
         if form.is_valid():
             add = form.save(commit=False)
             add.reply_to_thread_id = request.session['thread_id']
-            if request.session['reply_id']:
-                add.reply_to_reply_id = request.session['reply_id']
-                request.session['reply_id'] = 0
-            add.save()
+            try:
+                if request.session['reply_id']:
+                    add.reply_to_reply_id = request.session['reply_id']
+                    request.session['reply_id'] = 0
+            except KeyError:
+                pass
+            finally:
+                add.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
