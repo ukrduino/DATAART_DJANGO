@@ -30,6 +30,7 @@ class Thread(models.Model):
     thread_title = models.CharField(max_length=250, verbose_name='Thread title', blank=False, unique=True)
     thread_text = models.TextField(verbose_name='Thread description', blank=False)
     thread_date = models.DateTimeField(auto_now_add=True, verbose_name='Created', blank=False)
+    thread_change_date = models.DateTimeField(auto_now=True, verbose_name='Changed')
     thread_category = models.ForeignKey(Category)
     thread_image = models.ImageField(upload_to="", default="ImageNot.jpg")
 

@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from IT_FORUM.forms import ThreadForm, ReplyForm, UserCreateForm
@@ -27,6 +28,7 @@ def get_cat_and_subcat_dict(request):
 def show_home_page(request):
     args = dict()
     args['main_categories'] = get_cat_and_subcat_dict(request)
+    args["recently_updated_threads"] = list(Thread.objects.order_by('thread_change_date').reverse())[-10:]
     return render(request, "Dashboard_page_content.html", args)
 
 
@@ -142,12 +144,22 @@ def set_reply_id(request):
     return HttpResponse("reply_id was set")
 
 
+# def get_last_updated_threads(request):
+#     args = dict()
+#     args["recently_updated_threads"] = list(Thread.objects.order_by('thread_change_date').reverse())[-10:]
+#     print(args["threads"])
+#     return render(request, "Dashboard_page_updates.html", args)
+
+
 def new_reply(request):
     if request.method == 'POST':
         form = ReplyForm(request.POST)
         if form.is_valid():
             add = form.save(commit=False)
             add.reply_to_thread_id = request.session['thread_id']
+            thread = Thread.objects.get(id=request.session['thread_id'])
+            thread.thread_change_date = datetime.now()
+            thread.save()
             try:
                 if request.session['reply_id']:
                     add.reply_to_reply_id = request.session['reply_id']

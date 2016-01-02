@@ -1,0 +1,6 @@
+{% for thread in threads %}
+    <li>
+        <a href="{% url 'threads_category_page' thread.thread_category_id %}">[{{ thread.thread_category }}] | </a>
+        <a href="{% url 'thread_page' thread.id %}">{{ thread.thread_title|truncatechars:30 }}</a>
+    </li>
+{% endfor %}

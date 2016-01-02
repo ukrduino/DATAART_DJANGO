@@ -9,7 +9,14 @@
             <div class="panel-heading">
                 *UPDATES*
             </div>
-            <div class="panel-body"></div>
+            <div class="panel-body">
+                {% for thread in recently_updated_threads %}
+                    <li>
+                        <a href="{% url 'threads_category_page' thread.thread_category_id %}">[{{ thread.thread_category }}] | </a>
+                        <a href="{% url 'thread_page' thread.id %}">{{ thread.thread_title|truncatechars:30 }}</a>
+                    </li>
+                {% endfor %}
+            </div>
         </div>
     </div>
     <div class="col-lg-2">
@@ -19,9 +26,9 @@
             </div>
             <div class="panel-body">
                 {% for sub_cat in main_categories.Hobbies %}
-                    <p>
+                    <li>
                         <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat.category_title }}</a>
-                    </p>
+                    </li>
                 {% endfor %}
             </div>
         </div>
@@ -33,9 +40,9 @@
             </div>
             <div class="panel-body">
                 {% for sub_cat in main_categories.Hi_Tech %}
-                    <p>
+                    <li>
                         <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat.category_title }}</a>
-                    </p>
+                    </li>
                 {% endfor %}
             </div>
         </div>
@@ -47,9 +54,9 @@
             </div>
             <div class="panel-body">
                 {% for sub_cat in main_categories.Talks %}
-                    <p>
+                    <li>
                         <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat.category_title }}</a>
-                    </p>
+                    </li>
                 {% endfor %}
             </div>
         </div>
@@ -63,9 +70,9 @@
                     </div>
                     <div class="panel-body">
                         {% for sub_cat in main_categories.Big_Boss %}
-                            <p>
+                            <li>
                                 <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat.category_title }}</a>
-                            </p>
+                            </li>
                         {% endfor %}
                     </div>
                 </div>
@@ -77,9 +84,9 @@
                     </div>
                     <div class="panel-body">
                         {% for sub_cat in main_categories.HR %}
-                            <p>
+                            <li>
                                 <a href="{% url 'threads_category_page' sub_cat.id %}">{{ sub_cat.category_title }}</a>
-                            </p>
+                            </li>
                         {% endfor %}
                     </div>
                 </div>
