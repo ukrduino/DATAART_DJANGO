@@ -144,13 +144,6 @@ def set_reply_id(request):
     return HttpResponse("reply_id was set")
 
 
-# def get_last_updated_threads(request):
-#     args = dict()
-#     args["recently_updated_threads"] = list(Thread.objects.order_by('thread_change_date').reverse())[-10:]
-#     print(args["threads"])
-#     return render(request, "Dashboard_page_updates.html", args)
-
-
 def new_reply(request):
     if request.method == 'POST':
         form = ReplyForm(request.POST)

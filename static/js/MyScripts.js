@@ -26,13 +26,3 @@ $('.show_add_reply_form').click(function () {
 $('#close_add_reply_form').click(function () {
     $("#new_reply_form").slideToggle("slow");
 });
-
-//$(document).ready(function () {
-//    $.ajax({
-//        type: 'GET',
-//        url: 'get_thread_updates/',
-//        success: function (data) {
-//            $('#recently_updated_threads').html(data);
-//        }
-//    });
-//});

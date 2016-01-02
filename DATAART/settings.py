@@ -54,13 +54,10 @@ TEMPLATES = [
 ]
 
 SESSION_SAVE_EVERY_REQUEST = True
+
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 WSGI_APPLICATION = 'DATAART.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -69,9 +66,7 @@ DATABASES = {
     }
 }
 
-FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'),
-
-)
+FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'),)
 
 
 # Internationalization

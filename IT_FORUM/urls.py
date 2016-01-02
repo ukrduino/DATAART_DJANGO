@@ -14,6 +14,5 @@ urlpatterns = [
     url(r'thread/([0-9]+)/$', thread_page, name="thread_page"),
     url(r'new_reply/$', new_reply, name='new_reply'),
     url(r'set_reply_id/$', set_reply_id),
-    # url(r'get_thread_updates/$', get_last_updated_threads),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
